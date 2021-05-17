@@ -156,10 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyType: 1
-  DefaultHP: 100
-  Speed: 6
-  Damage: 0
-  AttackDelay: 0.1
+  data: {fileID: 11400000, guid: e0e8a403d55ed0d41b48d15ee181124d, type: 2}
   ActionDistance: 20
   Marker: {fileID: 755354400}
   MuzzlePosition: {fileID: 1563490788}

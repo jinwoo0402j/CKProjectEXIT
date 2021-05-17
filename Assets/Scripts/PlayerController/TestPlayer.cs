@@ -9,17 +9,17 @@ using Utils;
 public class TestPlayer : TestEntity
 {
     [SerializeField]
-    private float DefaultHP;
+    private PlayerConfig data;
 
-    [Header("Movement Property")]
-    [SerializeField]
-    private float Speed;
+    private float DefaultHP { get => data.DEFAULT_HP; }
 
-    [Header("Attak Property")]
+    private float Speed { get => data.WALK_SPEED; }
+
+    private float Damage { get => data.ATTACK_DAMAGE; }
+
     [SerializeField]
-    private float Damage;
-    [SerializeField]
-    private float AttackDelay = 10f;
+    private float AttackDelay { get => data.ATTACK_DELAY; }
+
     private float LastAttackTime;
 
     [SerializeField]
@@ -210,7 +210,7 @@ public class TestPlayer : TestEntity
 
 
         }
-        else if(Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
             if (LastAttackTime + AttackDelay < Time.time)
             {
@@ -226,7 +226,7 @@ public class TestPlayer : TestEntity
                 instance.transform.position = MuzzlePosition.position;
 
                 var bullet = CacheManager.Get<Bullet>(instance);
-                bullet.Intialize(dir.ToVector3FromXZ());
+                bullet.Intialize(dir.ToVector3FromXZ(), data.BULLET_SPEED);
             }
         }
         else

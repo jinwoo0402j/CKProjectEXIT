@@ -11,10 +11,6 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Rigidbody rigid;
 
-    [SerializeField]
-    private float Speed = 6f;
-
-
     private void Awake()
     {
         eventRiser.OnTriggerEnterEvent += EventRiser_OnTriggerEnterEvent;
@@ -30,9 +26,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Intialize(in Vector3 dir)
+    public void Intialize(in Vector3 dir, in float speed)
     {
-        rigid.velocity = dir.normalized * Speed;
+        rigid.velocity = dir.normalized * speed;
 
         StartCoroutine(DelayRelease());
     }

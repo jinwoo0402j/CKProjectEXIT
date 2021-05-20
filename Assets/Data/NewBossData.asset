@@ -18,5 +18,9 @@ MonoBehaviour:
   - 0.66
   - 0.3
   default_hp: 100
-  attack_delay: 0
+  melee_attack_charge_delay: 2
+  melee_attack_delay: 5
+  melee_attack_damage: 5
+  melee_attack_threadhold: 7
+  melee_attack_range: 10
   bullet_speed: 0

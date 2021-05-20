@@ -92,5 +92,11 @@ namespace Utils
         {
             isEnabled = true;
         }
+
+        public Notifier(in T defaultValue)
+        {
+            isEnabled = true;
+            currentData = defaultValue;
+        }
     }
 }

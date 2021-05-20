@@ -147,12 +147,18 @@ public class CoroutineWrapper
         OnCompleteOnce = null;
     }
 
-    public void Stop()
+    public void Stop(in bool callComplete = false)
     {
         if (Routine != null)
         {
             Runner.StopCoroutine(Routine);
             Routine = null;
+        }
+
+        if (callComplete)
+        {
+            OnCompleteOnce?.Invoke();
+            OnCompleteOnce = null;
         }
     }
 }

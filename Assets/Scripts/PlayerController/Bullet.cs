@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Rigidbody rigid;
 
+
+    private HitInfo info;
+
     private void Awake()
     {
         eventRiser.OnTriggerEnterEvent += EventRiser_OnTriggerEnterEvent;
@@ -20,15 +24,24 @@ public class Bullet : MonoBehaviour
     {
         if (obj.TryGetComponent<TestEntity>(out var entity))
         {
-            entity.TakeDamage(new HitInfo());
+            if (entity.Type == info.Origin.Type)
+                return;
+
+            info.Destination = entity;
+            info.hitNormal = (entity.transform.position - transform.position).normalized.ToXZ().ToVector3FromXZ();
+            info.hitPoint = transform.position;
+
+            entity.TakeDamage(info);
 
             PoolManager.ReleaseObject(gameObject);
         }
     }
 
-    public void Intialize(in Vector3 dir, in float speed)
+    public void Intialize(in HitInfo info, in float speed)
     {
-        rigid.velocity = dir.normalized * speed;
+        this.info = info;
+
+        rigid.velocity = info.hitDir.normalized * speed;
 
         StartCoroutine(DelayRelease());
     }

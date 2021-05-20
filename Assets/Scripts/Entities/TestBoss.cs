@@ -17,19 +17,26 @@ public class TestBoss : TestEntity
     [SerializeField]
     private List<BasePatternConfig> patterns;
 
+    [SerializeField]
+    private TestPlayer player;
+
     private List<Bullet> GeneratedBullets;
 
     private CoroutineWrapper BarrageRoutine;
+    private CoroutineWrapper MeleeAttackRoutine;
     private CoroutineWrapper PhaseRoutine;
 
     private float LastPatternTime;
+    private float LastMeleeAttackTime;
     private BasePatternConfig LastPattern;
+    
 
     public Notifier<int> Phase { get; private set; } = new Notifier<int>(0);
 
     private void Awake()
     {
         BarrageRoutine = new CoroutineWrapper(this);
+        MeleeAttackRoutine = new CoroutineWrapper(this);
         PhaseRoutine = new CoroutineWrapper(this);
 
         //dev
@@ -56,12 +63,46 @@ public class TestBoss : TestEntity
 
             if (LastPattern == null || Time.time - LastPatternTime > LastPattern.PATTERN_DELAY)
             {
+                LastPatternTime = Time.time;
                 LastPattern = patterns.GetRandom();
-                BarrageRoutine.Start(LastPattern.Run());
+                BarrageRoutine.StartSingleton(LastPattern.Run(this, player));
             }
 
+            if(Time.time - LastMeleeAttackTime > data.MELEE_ATTACK_DELAY)
+            {
+                if ((player.transform.position - transform.position).magnitude < data.MELEE_ATTACK_THREADHOLD)
+                {
+                    LastMeleeAttackTime = Time.time;
+                    // impl melee attack
+                    MeleeAttackRoutine.StartSingleton(MeleeAttack());
+
+                    // indicator 
+                    var instance = PoolManager.SpawnObject(AttackIndicatorOrigin.gameObject);
+                    instance.transform.position = transform.position;
+
+                    var indicator = instance.GetComponent<AttackIndicator>();
+                    indicator.Initialize(data.MELEE_ATTACK_CHARGE_DELAY, data.MELEE_ATTACK_RANGE);
+                }
+            }
 
             yield return null;
+        }
+    }
+
+    IEnumerator MeleeAttack()
+    {
+        //animation
+        yield return YieldInstructionCache.WaitForSeconds(data.MELEE_ATTACK_CHARGE_DELAY);
+
+        if ((player.transform.position - transform.position).magnitude < data.MELEE_ATTACK_RANGE)
+        {
+            var info = new HitInfo();
+            info.Amount = data.MELEE_ATTACK_DAMAGE;
+            info.hitPoint = player.transform.position;
+            info.Origin = this;
+            info.Destination = player;
+
+            player.TakeDamage(info);
         }
     }
 

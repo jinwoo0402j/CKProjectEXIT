@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,15 @@ using Utils;
 public class TestBoss : TestEntity
 {
 
+    public static event Action<TestEntity> OnBossAwaken;
+    public static event Action<TestEntity> OnBossRemoved;
+
     [SerializeField]
     private AttackIndicator AttackIndicatorOrigin;
 
     [SerializeField]
     private BossConfig data;
+    public BossConfig Data { get => data; }
 
     [SerializeField]
     private List<BasePatternConfig> patterns;
@@ -29,7 +34,7 @@ public class TestBoss : TestEntity
     private float LastPatternTime;
     private float LastMeleeAttackTime;
     private BasePatternConfig LastPattern;
-    
+
 
     public Notifier<int> Phase { get; private set; } = new Notifier<int>(0);
 
@@ -53,8 +58,17 @@ public class TestBoss : TestEntity
         StartCoroutine(MainRoutine());
     }
 
+    private void RuntimeInitialize()
+    {
+        OnBossAwaken?.Invoke(this);
+
+        HP.CurrentData = data.DEFAULT_HP;
+    }
+
     IEnumerator MainRoutine()
     {
+        RuntimeInitialize();
+
         var waitForPuzzle = new WaitUntil(() => PuzzleManager.OverridedTimeScale.CurrentData != 0);
 
         while (enabled)
@@ -68,7 +82,7 @@ public class TestBoss : TestEntity
                 BarrageRoutine.StartSingleton(LastPattern.Run(this, player));
             }
 
-            if(Time.time - LastMeleeAttackTime > data.MELEE_ATTACK_DELAY)
+            if (Time.time - LastMeleeAttackTime > data.MELEE_ATTACK_DELAY)
             {
                 if ((player.transform.position - transform.position).magnitude < data.MELEE_ATTACK_THREADHOLD)
                 {
@@ -111,6 +125,7 @@ public class TestBoss : TestEntity
     public override void TakeDamage(HitInfo info)
     {
         base.TakeDamage(info);
+        Debug.Log("hit : " + info.Amount);
 
         var rate = HP.CurrentData / data.DEFAULT_HP;
         int phase = 0;
@@ -135,6 +150,7 @@ public class TestBoss : TestEntity
         //ani
 
         //release
+        OnBossRemoved?.Invoke(this);
     }
 
 

@@ -9,7 +9,7 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
     public event Action OnPuzzleInvoked;
 
 
-    public static Notifier<float> OverridedTimeScale { get; private set; } = new Notifier<float>();
+    public static Notifier<float> OverridedTimeScale { get; private set; } = new Notifier<float>(1);
 
 
 

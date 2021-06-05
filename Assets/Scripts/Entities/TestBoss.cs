@@ -79,7 +79,7 @@ public class TestBoss : TestEntity
             {
                 LastPatternTime = Time.time;
                 LastPattern = patterns.GetRandom();
-                BarrageRoutine.StartSingleton(LastPattern.Run(this, player));
+                BarrageRoutine.StartSingleton(LastPattern.Run(BarrageRoutine.Runner, this, player));
             }
 
             if (Time.time - LastMeleeAttackTime > data.MELEE_ATTACK_DELAY)

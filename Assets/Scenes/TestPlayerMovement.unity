@@ -4219,7 +4219,7 @@ MonoBehaviour:
   AttackIndicatorOrigin: {fileID: 3816829972052800006, guid: 76917113c4724454ea235bd180ee82f4, type: 3}
   data: {fileID: 11400000, guid: 18692fd6af69cd24c8cfd777c890f110, type: 2}
   patterns:
-  - {fileID: 11400000, guid: 1ffba36b0c176374186286dff4992919, type: 2}
+  - {fileID: 11400000, guid: 760767c7022e27c4498fe52c492eed20, type: 2}
   player: {fileID: 56452702}
 --- !u!65 &1252833249886569787
 BoxCollider:

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a7b5b0ea9b1ba48875441d0ce3246e, type: 3}
+  m_Name: 2Shot
+  m_EditorClassIdentifier: 
+  bullet_origin: {fileID: 2269879196464680900, guid: b62e4b4f03d8aa6439ad076a1dfa326b, type: 3}
+  bullet_damage: 10
+  bullet_speed: 4
+  pattern_interval: 0.2
+  pattern_runtime: 0.4
+  pattern_delay: 1
+  offset_direction: 1
+  offset_speed: 1
+  default_offset: 0

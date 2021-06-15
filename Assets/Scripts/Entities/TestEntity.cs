@@ -30,6 +30,8 @@ public class TestEntity : MonoBehaviour
     [SerializeField]
     protected EntityType MyType;
     public EntityType Type { get => MyType; }
+    public virtual float DefaultHP { get; }
+
     public Notifier<float> HP = new Notifier<float>();
 
     public event Action<HitInfo> OnHit;

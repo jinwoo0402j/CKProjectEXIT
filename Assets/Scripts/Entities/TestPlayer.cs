@@ -11,7 +11,7 @@ public class TestPlayer : TestEntity
     [SerializeField]
     private PlayerConfig data;
 
-    private float DefaultHP { get => data.DEFAULT_HP; }
+    public override float DefaultHP { get => data.DEFAULT_HP; }
 
     private float Speed { get => data.WALK_SPEED; }
 
@@ -53,7 +53,6 @@ public class TestPlayer : TestEntity
 
     [SerializeField]
     private ParticleSystem ProbeMuzzleEffect;
-
 
 
 

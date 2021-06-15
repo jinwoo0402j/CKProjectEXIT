@@ -21,6 +21,7 @@ public class LinkedPatternConfig : BasePatternConfig
     public List<BasePatternConfig> PATTERNS { get => patterns; }
 
     public override float PATTERN_DELAY => patterns.Sum(pattern => pattern.PATTERN_DELAY);
+    public override float PATTERN_RUNTIME => patterns.Sum(pattern => pattern.PATTERN_RUNTIME);
 
     public override IEnumerator Run(MonoBehaviour runner, TestEntity origin, TestEntity destination)
     {

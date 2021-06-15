@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a425bc0af2e584b9a8dba1d9d89f8f, type: 3}
-  m_Name: '[ObjectBase]NewPatternData'
+  m_Script: {fileID: 11500000, guid: 92a5aef616a312e44b81d711200fd997, type: 3}
+  m_Name: Delay4
   m_EditorClassIdentifier: 
   bullet_origin: {fileID: 0}
   bullet_damage: 0
-  bullet_speed: 10
+  bullet_speed: 0
   pattern_interval: 0
   pattern_runtime: 0
-  pattern_delay: 0
+  pattern_delay: 4
   offset_direction: 1
   offset_speed: 1
   default_offset: 0
-  object_origin: {fileID: 3522041300588950444, guid: 8d82cf1e4ba1a3a469ac5a27bd3bf72b, type: 3}

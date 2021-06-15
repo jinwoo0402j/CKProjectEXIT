@@ -9,10 +9,16 @@ using Utils;
 public class PatternContainer : MonoBehaviour
 {
     [SerializeField]
-    private BasePatternConfig Pattern;
+    private BasePatternConfig pattern;
 
     [SerializeField]
     private Rigidbody rigid;
+
+    [SerializeField]
+    private TestBulletContainer overrideEntity;
+
+
+    public BasePatternConfig Pattern { get => pattern; }
 
     private HitInfo info;
     private TestEntity Origin;
@@ -24,7 +30,7 @@ public class PatternContainer : MonoBehaviour
     public void Initialize(in HitInfo info, in float speed)
     {
         this.info = info;
-        Origin = info.Origin;
+        Origin = overrideEntity;
         Destination = info.Destination;
         Speed = speed;
     }
@@ -46,7 +52,7 @@ public class PatternContainer : MonoBehaviour
 
     public void Run()
     {
-        StartCoroutine(Pattern.Run(this, Origin, Destination));
+        StartCoroutine(Pattern.Run(this, overrideEntity, Destination));
         StartCoroutine(DelayRelease());
     }
 }

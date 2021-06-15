@@ -17,11 +17,15 @@ public class ObjectBasePatternConfig : BasePatternConfig
 
 
     [SerializeField]
-    private GameObject object_origin;
+    private PatternContainer object_origin;
 
-    public GameObject OBJECT_ORIGIN { get => object_origin; }
 
-    public virtual IEnumerator Run(MonoBehaviour runner, TestEntity origin, TestEntity destination)
+    public PatternContainer OBJECT_ORIGIN { get => object_origin; }
+    public override float PATTERN_RUNTIME => OBJECT_ORIGIN.Pattern.PATTERN_RUNTIME;
+    public override float PATTERN_DELAY => OBJECT_ORIGIN.Pattern.PATTERN_DELAY;
+    public override float PATTERN_INTERVAL => OBJECT_ORIGIN.Pattern.PATTERN_RUNTIME;
+
+    public override IEnumerator Run(MonoBehaviour runner, TestEntity origin, TestEntity destination)
     {
         float t = 0;
         float runtime = PATTERN_RUNTIME;
@@ -34,7 +38,7 @@ public class ObjectBasePatternConfig : BasePatternConfig
             {
                 var dir = Quaternion.Euler(Vector3.up * (Mathf.Lerp(0, 360, ((float)i).Remap((0, 8), (0, 1))) + DEFAULT_OFFSET + offset * OFFSET_DIRECTION)) * Vector3.forward;
 
-                var instance = PoolManager.SpawnObject(OBJECT_ORIGIN);
+                var instance = PoolManager.SpawnObject(OBJECT_ORIGIN.gameObject);
                 instance.transform.position = origin.transform.position + dir.normalized;
 
                 var container = CacheManager.Get<PatternContainer>(instance);

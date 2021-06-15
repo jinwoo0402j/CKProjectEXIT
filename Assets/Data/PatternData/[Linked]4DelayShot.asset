@@ -9,16 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a425bc0af2e584b9a8dba1d9d89f8f, type: 3}
-  m_Name: '[ObjectBase]NewPatternData'
+  m_Script: {fileID: 11500000, guid: 6aa993a99b614a0459cea963297edb6a, type: 3}
+  m_Name: '[Linked]4DelayShot'
   m_EditorClassIdentifier: 
   bullet_origin: {fileID: 0}
   bullet_damage: 0
-  bullet_speed: 10
+  bullet_speed: 0
   pattern_interval: 0
   pattern_runtime: 0
-  pattern_delay: 0
+  pattern_delay: 1
   offset_direction: 1
   offset_speed: 1
   default_offset: 0
-  object_origin: {fileID: 3522041300588950444, guid: 8d82cf1e4ba1a3a469ac5a27bd3bf72b, type: 3}
+  patterns:
+  - {fileID: 11400000, guid: c6d323be0c1ab1f46817b0ec354b0722, type: 2}
+  - {fileID: 11400000, guid: dbccad5d03f178f40bc76c4e6e88a117, type: 2}

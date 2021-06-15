@@ -236,7 +236,7 @@ public class TestPlayer : TestEntity
                     hitDir = dir.ToVector3FromXZ(),
                 };
 
-                bullet.Intialize(info, data.BULLET_SPEED);
+                bullet.Initialize(info, data.BULLET_SPEED);
             }
         }
         else

@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Intialize(in HitInfo info, in float speed)
+    public void Initialize(in HitInfo info, in float speed)
     {
         this.info = info;
 

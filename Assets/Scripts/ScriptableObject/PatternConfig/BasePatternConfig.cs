@@ -77,7 +77,7 @@ public class BasePatternConfig : ScriptableObject
                 instance.transform.position = origin.transform.position + dir.normalized;
 
                 var bullet = CacheManager.Get<Bullet>(instance);
-                bullet.Intialize(new HitInfo()
+                bullet.Initialize(new HitInfo()
                 {
                     Amount = BULLET_DAMAGE,
                     Origin = origin,

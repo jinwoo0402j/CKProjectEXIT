@@ -28,6 +28,7 @@ public class TestPlayer : TestEntity
 
     //[SerializeField]
     //private Animator animator;
+    
     //[SerializeField]
     //private Animator probeAnimator;
 

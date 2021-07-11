@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Bullet_03
+  m_Shader: {fileID: -6465566751694194690, guid: cbf99edbae4b5e54e81ce560fed0e6da, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_118f1bf4a99c40b0ac574d2a05e31c4b_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 88a3103f0a00c394987189407e691f7a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_732425e1343944f3b3871058e6808a67_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 927c8b4f8e11e2a448816e57321f0146, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1197e4f0ddaa4b208eb02c6563057143: 4.83
+    - Vector1_237f202a87dd4ddb9ec013fadec2c161: 0.5
+    - Vector1_93a340b11f8b49c5a695209bdbafe93e: 0.5
+    - Vector1_ad5f457230de4aaca06dc05c51dc0f78: 3.93
+    - Vector1_ce18a5a0ca02409186959a4f9e13ee82: 0
+    - Vector1_e75792df5860475193b31d3aedc5702e: 8.03
+    - Vector1_fa27907b6dd9418b8675e2e3ed5343ab: 3
+    m_Colors:
+    - Color_31ab5163091d4f7f8d21beb64233ca0e: {r: 0.13725491, g: 1, b: 0.1764706, a: 0}
+    - Color_51c35c49658b41068e2b2a11da2d38be: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_2129eab36df2470593e7ff0a89b7cbbc: {r: 0, g: 0.2, b: 0, a: 0}
+  m_BuildTextureStacks: []

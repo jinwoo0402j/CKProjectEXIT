@@ -6,12 +6,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using Utils;
 
-public class TestPlayer : TestEntity
+public class Drone : TestEntity
 {
     [SerializeField]
     private PlayerConfig data;
-
-    public override float DefaultHP { get => data.DEFAULT_HP; }
 
     private float Speed { get => data.WALK_SPEED; }
 
@@ -31,6 +29,8 @@ public class TestPlayer : TestEntity
     //[SerializeField]
     //private Animator probeAnimator;
 
+    [SerializeField]
+    private Animator Sub_Ani;
 
     [SerializeField]
     private GameObject Marker;
@@ -54,8 +54,18 @@ public class TestPlayer : TestEntity
     [SerializeField]
     private ParticleSystem ProbeMuzzleEffect;
 
+    [SerializeField]
+    [Range(0, 1)]
+    private float LerpRate;
 
+    [SerializeField]
+    private Vector3 offset;
 
+    [SerializeField]
+    private Transform Target;
+
+    [SerializeField]
+    private AudioSource Laser;
 
     private CoroutineWrapper probeRotationWrapper;
 
@@ -77,12 +87,12 @@ public class TestPlayer : TestEntity
 
         OnclickShot.OnDataChanged += OnclickShot_OnDataChanged;
 
-        HP.CurrentData = DefaultHP;
-
         BulletWrapper = CoroutineWrapper.Generate(this);
         attackDelayWrapper = CoroutineWrapper.Generate(this);
         markerRoutine = CoroutineWrapper.Generate(this);
         probeRotationWrapper = CoroutineWrapper.Generate(this);
+
+        Sub_Ani.SetBool("Shoot",false);
     }
 
     protected override void Dead()
@@ -144,7 +154,6 @@ public class TestPlayer : TestEntity
 
 
         PlayerInput();
-        PlayerMovement();
 
         Animation();
 
@@ -156,15 +165,29 @@ public class TestPlayer : TestEntity
             //animator.SetBool("Run", Agent.velocity.magnitude > 0.1f);
             //probeAnimator.SetBool("Run", Agent.velocity.magnitude > 0.1f);
         }
+
+        Anicon();
     }
 
-    private void PlayerMovement()
+    void FixedUpdate()
     {
-        Vector2 inputAxis = InputManager.Instance.InputRaw.CurrentData;
-
-        transform.Translate(inputAxis.ToVector3FromXZ() * Time.deltaTime * PuzzleManager.OverridedTimeScale.CurrentData * Speed, Space.World);
+        var targetPosition = new Vector3(Target.position.x + offset.x, offset.y, Target.position.z + offset.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, LerpRate);
     }
 
+    private void Anicon()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            Sub_Ani.SetBool("Shoot", true);
+            Sub_Ani.SetBool("Idle", false);
+        }
+        else
+        {
+            Sub_Ani.SetBool("Shoot", false);
+            Sub_Ani.SetBool("Idle", true);
+        }
+    }
 
     private void PlayerInput()
     {
@@ -174,8 +197,9 @@ public class TestPlayer : TestEntity
 
             var position = InputManager.Instance.MouseWorldXZ.CurrentData;
             var dir = position - transform.position.ToXZ();
-
+            transform.LookAt(transform.position + dir.ToVector3FromXZ());
             ProbeRoot.rotation = Quaternion.Euler(Quaternion.LookRotation(dir.ToVector3FromXZ().normalized).eulerAngles + Quaternion.Euler(0, 90, 0).eulerAngles);
+
 
             if (LastAttackTime + AttackDelay < Time.time)
             {
@@ -204,6 +228,7 @@ public class TestPlayer : TestEntity
                     target.TakeDamage(info);
                     ProbeMuzzleEffect.Play();
                     BulletWrapper.StartSingleton(BulletEffect(0.1f, info));
+                    Laser.Play();
                 }
 
                 OnShot?.Invoke();
@@ -241,6 +266,7 @@ public class TestPlayer : TestEntity
         else
         {
             OnclickShot.CurrentData = false;
+
         }
 
 

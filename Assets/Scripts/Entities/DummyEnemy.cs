@@ -5,7 +5,7 @@ using UnityEngine;
 public class DummyEnemy : TestEntity
 {
     [SerializeField]
-    private int defaultHP = 100;
+    private int defaultHP = 1000;
 
     private CoroutineWrapper scaleAniWrapper;
     private Vector3 DefaultLocalScale;

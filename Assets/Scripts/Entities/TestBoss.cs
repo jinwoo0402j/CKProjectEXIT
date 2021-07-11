@@ -23,7 +23,7 @@ public class TestBoss : TestEntity
     private List<BasePatternConfig> patterns;
 
     [SerializeField]
-    private TestPlayer player;
+    private Player player;
 
     private List<Bullet> GeneratedBullets;
 

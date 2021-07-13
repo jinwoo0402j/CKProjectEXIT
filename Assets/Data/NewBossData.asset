@@ -17,7 +17,7 @@ MonoBehaviour:
   - 1
   - 0.66
   - 0.3
-  default_hp: 1000
+  default_hp: 100
   melee_attack_charge_delay: 2
   melee_attack_delay: 5
   melee_attack_damage: 5

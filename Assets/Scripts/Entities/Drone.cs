@@ -24,6 +24,9 @@ public class Drone : TestEntity
     private float ActionDistance = 20f;
 
 
+    private float rayLength;
+
+
     //[SerializeField]
     //private Animator animator;
     //[SerializeField]
@@ -79,6 +82,7 @@ public class Drone : TestEntity
     private CoroutineWrapper BulletWrapper;
     private CoroutineWrapper attackDelayWrapper;
     private CoroutineWrapper markerRoutine;
+
 
     private void Start()
     {
@@ -151,8 +155,6 @@ public class Drone : TestEntity
 
     void Update()
     {
-
-
         PlayerInput();
 
         Animation();
@@ -189,85 +191,101 @@ public class Drone : TestEntity
         }
     }
 
+
     private void PlayerInput()
     {
-        if (Input.GetMouseButton(0))
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
+
+        float rayLength;
+
+        if (GroupPlane.Raycast(cameraRay, out rayLength))
+
         {
-            OnclickShot.CurrentData = true;
 
-            var position = InputManager.Instance.MouseWorldXZ.CurrentData;
-            var dir = position - transform.position.ToXZ();
-            transform.LookAt(transform.position + dir.ToVector3FromXZ());
-            ProbeRoot.rotation = Quaternion.Euler(Quaternion.LookRotation(dir.ToVector3FromXZ().normalized).eulerAngles + Quaternion.Euler(0, 90, 0).eulerAngles);
+            Vector3 pointTolook = cameraRay.GetPoint(rayLength);
 
-
-            if (LastAttackTime + AttackDelay < Time.time)
+            if (Input.GetMouseButton(0))
             {
-                LastAttackTime = Time.time;
+                OnclickShot.CurrentData = true;
 
-                var hits = Physics.RaycastAll(transform.position.ToXZ().ToVector3FromXZ(), dir.ToVector3FromXZ().normalized, 50, 1 << LayerMask.NameToLayer("Default"));
-                var entities = hits
-                    .Select(new Func<RaycastHit, TestEntity>(hit => hit.transform.GetComponent<TestEntity>()))
-                    .Where(entity => entity != null && entity.Type == EntityType.Enemy && entity.HP.CurrentData > 0).ToList();
+                var position = new Vector3(pointTolook.x, transform.position.y, pointTolook.z);
+                var dir = position - transform.position;
+                transform.LookAt(position);
+                ProbeRoot.rotation = Quaternion.Euler(Quaternion.LookRotation(dir.normalized).eulerAngles + Quaternion.Euler(0, 90, 0).eulerAngles);
 
-                if (entities != null && entities.Count > 0)
+
+                if (LastAttackTime + AttackDelay < Time.time)
                 {
-                    var target = entities.First();
+                    LastAttackTime = Time.time;
 
-                    if (Vector2.Distance(target.transform.position.ToXZ(), transform.position.ToXZ()) > ActionDistance)
-                        return;
+                    var hits = Physics.RaycastAll(transform.position.ToXZ().ToVector3FromXZ(), dir.normalized, 50, 1 << LayerMask.NameToLayer("Default"));
+                    var entities = hits
+                        .Select(new Func<RaycastHit, TestEntity>(hit => hit.transform.GetComponent<TestEntity>()))
+                        .Where(entity => entity != null && entity.Type == EntityType.Enemy && entity.HP.CurrentData > 0).ToList();
 
-                    var info = new HitInfo();
-                    info.Amount = Damage;
-                    info.Origin = this;
-                    info.Destination = target;
-                    info.hitDir = dir.ToVector3FromXZ();
+                    if (entities != null && entities.Count > 0)
+                    {
+                        var target = entities.First();
+
+                        if (Vector2.Distance(target.transform.position.ToXZ(), transform.position.ToXZ()) > ActionDistance)
+                            return;
+
+                        var info = new HitInfo();
+                        info.Amount = Damage;
+                        info.Origin = this;
+                        info.Destination = target;
+                        info.hitDir = dir;
 
 
 
-                    target.TakeDamage(info);
-                    ProbeMuzzleEffect.Play();
-                    BulletWrapper.StartSingleton(BulletEffect(0.1f, info));
-                    Laser.Play();
+                        target.TakeDamage(info);
+                        ProbeMuzzleEffect.Play();
+                        BulletWrapper.StartSingleton(BulletEffect(0.1f, info));
+                        Laser.Play();
+                    }
+
+                    OnShot?.Invoke();
                 }
 
-                OnShot?.Invoke();
+
             }
-
-
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            if (LastAttackTime + AttackDelay < Time.time)
+            else if (Input.GetMouseButtonDown(1))
             {
-                LastAttackTime = Time.time;
-
-                //spawn Bullet
-                var position = InputManager.Instance.MouseWorldXZ.CurrentData;
-                var dir = position - transform.position.ToXZ();
-
-                transform.LookAt(transform.position + dir.ToVector3FromXZ());
-
-                var instance = PoolManager.SpawnObject(BulletOrigin);
-                instance.transform.position = MuzzlePosition.position;
-
-                var bullet = CacheManager.Get<Bullet>(instance);
-
-                var info = new HitInfo()
+                if (LastAttackTime + AttackDelay < Time.time)
                 {
-                    Amount = data.ATTACK_DAMAGE,
-                    Origin = this,
-                    hitDir = dir.ToVector3FromXZ(),
-                };
+                    LastAttackTime = Time.time;
 
-                bullet.Initialize(info, data.BULLET_SPEED);
+                    //spawn Bullet
+                    var position = InputManager.Instance.MouseWorldXZ.CurrentData;
+                    var dir = position - transform.position.ToXZ();
+
+                    transform.LookAt(transform.position + dir.ToVector3FromXZ());
+
+                    var instance = PoolManager.SpawnObject(BulletOrigin);
+                    instance.transform.position = MuzzlePosition.position;
+
+                    var bullet = CacheManager.Get<Bullet>(instance);
+
+                    var info = new HitInfo()
+                    {
+                        Amount = data.ATTACK_DAMAGE,
+                        Origin = this,
+                        hitDir = dir.ToVector3FromXZ(),
+                    };
+
+                    bullet.Initialize(info, data.BULLET_SPEED);
+                }
             }
-        }
-        else
-        {
-            OnclickShot.CurrentData = false;
+            else
+            {
+                OnclickShot.CurrentData = false;
+
+            }
 
         }
+
 
 
         IEnumerator BulletEffect(float moveDelay, HitInfo info)

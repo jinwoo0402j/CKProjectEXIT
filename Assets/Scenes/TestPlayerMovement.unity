@@ -3708,7 +3708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195112976158482579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.6259828, z: 2.045343}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7927943893708074245}
@@ -3994,7 +3994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3326836102816832965}
   m_LocalRotation: {x: -0, y: -0.4324056, z: -0, w: -0.9016792}
-  m_LocalPosition: {x: 0, y: 7.3299994, z: 5.92}
+  m_LocalPosition: {x: 0, y: 0, z: 3.27}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 3911305404951743046}
@@ -8798,7 +8798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3326836102876801144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.3299994, z: 5.92}
+  m_LocalPosition: {x: 0, y: 0, z: 3.2700002}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 3911305404951743046}
@@ -8828,7 +8828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3326836104292579491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.33, z: 5.92}
+  m_LocalPosition: {x: 0, y: 0, z: 3.2700002}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 3911305404951743046}
@@ -9034,7 +9034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4399013146854330620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.51, y: 0.6696708, z: 0.07482365}
+  m_LocalPosition: {x: 2.51, y: 2.49, z: 0.07482365}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 2008099967173048873}
@@ -9213,7 +9213,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   ProbeMuzzleEffect: {fileID: 3326836102876801145}
   LerpRate: 0.1
-  offset: {x: 2.51, y: 0.6696708, z: 0.07482365}
+  offset: {x: 2.51, y: 2.49, z: 0.07482365}
   Target: {fileID: 5981076304464960865}
   Laser: {fileID: 4399013146854330623}
 --- !u!82 &4399013146854330623

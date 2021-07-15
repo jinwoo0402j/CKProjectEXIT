@@ -14,6 +14,11 @@ public class Player : TestEntity
     [SerializeField]
     private AudioSource Roll_S;
 
+    [SerializeField]
+    private Rigidbody rb;
+
+    public bool Roll_State;
+
     public Animator AniCon;
 
     public float RollSpeed;
@@ -24,6 +29,7 @@ public class Player : TestEntity
 
     void Start()
     {
+        Roll_State = false;
         RollSpeed = 1f;
         AniCon.SetBool("Idle", true);
         AniCon.SetBool("Walk", false);
@@ -32,19 +38,24 @@ public class Player : TestEntity
 
     private void PlayerMovement()
     {
-        Vector2 inputAxis = InputManager.Instance.InputRaw.CurrentData;
-        transform.Translate(inputAxis.ToVector3FromXZ() * Time.deltaTime * PuzzleManager.OverridedTimeScale.CurrentData * Speed * RollSpeed, Space.World);
-        transform.LookAt(transform.position + inputAxis.ToVector3FromXZ());
+        float xMove = Input.GetAxisRaw("Horizontal");
+        float zMove = Input.GetAxisRaw("Vertical");
+
+        Vector3 getVel = new Vector3(xMove, 0, zMove).normalized * Speed * RollSpeed;
+        rb.velocity = getVel;
+        transform.LookAt(transform.position + getVel);
 
         var Rollbool = AniCon.GetCurrentAnimatorStateInfo(0);
 
         if(Rollbool.IsName("Rolling") && Rollbool.normalizedTime >= 0.1f && Rollbool.IsName("Rolling") && Rollbool.normalizedTime <= 0.5f)
         {
             RollSpeed = 3f;
+            Roll_State = true;
         }
         else 
         {
             RollSpeed = 1f;
+            Roll_State = false;
         }
 
 
@@ -52,7 +63,7 @@ public class Player : TestEntity
 
     private void Rolling()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && Roll_State == false)
         {
             AniCon.SetBool("Idle", false);
             AniCon.SetBool("Walk", false);

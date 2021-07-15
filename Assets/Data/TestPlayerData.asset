@@ -16,4 +16,4 @@ MonoBehaviour:
   default_hp: 100
   attack_delay: 0.1
   bullet_speed: 7
-  walk_speed: 6
+  walk_speed: 8

@@ -9902,6 +9902,8 @@ MonoBehaviour:
   MyType: 1
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   Roll_S: {fileID: 6362141073561847776}
+  rb: {fileID: 6362141073561847775}
+  Roll_State: 0
   AniCon: {fileID: 6362141073561847773}
   RollSpeed: 1
 --- !u!95 &6362141073561847773

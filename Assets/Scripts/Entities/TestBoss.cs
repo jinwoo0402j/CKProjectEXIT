@@ -45,7 +45,7 @@ public class TestBoss : TestEntity
         PhaseRoutine = new CoroutineWrapper(this);
 
         //dev
-        Phase.OnDataChanged += Phase_OnDataChanged;
+        // Phase.OnDataChanged += Phase_OnDataChanged;
     }
 
     private void Phase_OnDataChanged(int obj)

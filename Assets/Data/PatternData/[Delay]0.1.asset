@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_origin: {fileID: 0}
   bullet_damage: 0
-  bullet_speed: 0
+  bullet_speed: 4
   pattern_interval: 0
   pattern_runtime: 0
-  pattern_delay: 0.1
+  pattern_delay: 0
   offset_direction: 1
   offset_speed: 1
   default_offset: 0

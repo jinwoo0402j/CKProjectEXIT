@@ -13,7 +13,9 @@ using UnityEditor;
 public class PlayerConfig : ScriptableObject
 {
     [Space(20)]
-    
+
+    [SerializeField]
+    private bool Char_State;
 
     [SerializeField]
     private int attack_damage;
@@ -33,6 +35,7 @@ public class PlayerConfig : ScriptableObject
     [SerializeField]
     private float walk_speed;
 
+    public bool CHAR_STATE { get => Char_State; }
     public int ATTACK_DAMAGE { get => attack_damage; }
     public int DEFAULT_HP { get => default_hp; }
     public float ATTACK_DELAY { get => attack_delay; }

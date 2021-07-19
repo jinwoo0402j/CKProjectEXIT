@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ad480f49b7cb940acd39f22c705b37, type: 3}
   m_Name: NewBossData
   m_EditorClassIdentifier: 
-  attack_damage: 10
+  attack_damage: 50
   phase_rate:
   - 1
   - 0.66
@@ -20,7 +20,7 @@ MonoBehaviour:
   default_hp: 1000
   melee_attack_charge_delay: 2
   melee_attack_delay: 5
-  melee_attack_damage: 5
+  melee_attack_damage: 10
   melee_attack_threadhold: 7
   melee_attack_range: 10
   bullet_speed: 1

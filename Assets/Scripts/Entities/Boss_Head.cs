@@ -30,16 +30,17 @@ public class Boss_Head : MonoBehaviour
     private void Rotation()
     {
         Vector3 dir = Char.transform.position - Dummy.transform.position;
-
+        Vector3 dir2 = Char.transform.position;
+        Vector3 dir3 = new Vector3(dir2.x ,this.transform.position.y ,dir2.z);
         if (rotate_x > 324 || rotate_x < 36)
         {
-            transform.LookAt(Char.transform.position);
+            transform.LookAt(dir3);
             Boss.SetBool("S_Walk", false);
             Boss.SetBool("Idle", true);
         }
         else
         {
-            transform.LookAt(Char.transform.position);
+            transform.LookAt(dir3);
             Dummy.transform.rotation = Quaternion.Lerp(Dummy.transform.rotation, Quaternion.LookRotation(dir), R_Speed * Time.deltaTime);
             Boss.SetBool("S_Walk", true);
             Boss.SetBool("Idle", false);

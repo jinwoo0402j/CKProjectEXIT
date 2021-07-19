@@ -31,13 +31,14 @@ public class TestEntity : MonoBehaviour
     protected EntityType MyType;
     public EntityType Type { get => MyType; }
     public virtual float DefaultHP { get; }
+    public virtual bool CharState { get; }
 
     public Notifier<float> HP = new Notifier<float>();
 
     public event Action<HitInfo> OnHit;
     public event Action<TestEntity> OnDead;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     public TestEntity()
     {
@@ -56,7 +57,7 @@ public class TestEntity : MonoBehaviour
     {
         HP.CurrentData -= info.Amount;
         OnHit?.Invoke(info);
-
+        
         if (HP.CurrentData <= 0)
         {
             if (isDead)
@@ -75,6 +76,6 @@ public class TestEntity : MonoBehaviour
 
     protected virtual void Dead()
     {
-
+        Time.timeScale = 0;
     }
 }

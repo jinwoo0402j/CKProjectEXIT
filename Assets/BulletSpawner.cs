@@ -10,7 +10,9 @@ public class BulletSpawner : MonoBehaviour
 
     private float spawnRate; // 생성 주기 
     private float timeAfterSpawn; // 최근 생성 시점에서 지난 시간 
-    
+
+    [SerializeField]
+    private AudioSource Laser;
 
     void Start() {
         // 최근 생성 이후의 누적 시간을 0으로 초기화
@@ -31,6 +33,7 @@ public class BulletSpawner : MonoBehaviour
 
         if(timeAfterSpawn >= spawnRate)
         {
+            Laser.Play();
             //누적된 시간을 리셋
             timeAfterSpawn = 0f;
 

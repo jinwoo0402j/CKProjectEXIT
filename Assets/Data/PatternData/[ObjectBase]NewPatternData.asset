@@ -20,5 +20,5 @@ MonoBehaviour:
   pattern_delay: 0
   offset_direction: 1
   offset_speed: 1
-  default_offset: 0
+  default_offset: 28.77
   object_origin: {fileID: 3522041300588950444, guid: 8d82cf1e4ba1a3a469ac5a27bd3bf72b, type: 3}

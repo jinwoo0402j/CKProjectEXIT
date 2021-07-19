@@ -23,6 +23,8 @@ public class Player : TestEntity
 
     public float RollSpeed;
 
+    private bool char_state;
+
     public override float DefaultHP { get => data.DEFAULT_HP; }
 
     private float Speed { get => data.WALK_SPEED; }
@@ -47,19 +49,24 @@ public class Player : TestEntity
 
         var Rollbool = AniCon.GetCurrentAnimatorStateInfo(0);
 
-        if(Rollbool.IsName("Rolling") && Rollbool.normalizedTime >= 0.1f && Rollbool.IsName("Rolling") && Rollbool.normalizedTime <= 0.5f)
+        if (Rollbool.IsName("Rolling") && Rollbool.normalizedTime >= 0.1f && Rollbool.IsName("Rolling") && Rollbool.normalizedTime <= 0.5f)
         {
             RollSpeed = 3f;
             Roll_State = true;
         }
-        else 
+        else
         {
             RollSpeed = 1f;
             Roll_State = false;
         }
-
-
     }
+
+    protected override void Dead()
+    {
+        base.Dead();
+        
+    }
+
 
     private void Rolling()
     {
@@ -103,8 +110,12 @@ public class Player : TestEntity
 
     void Update()
     {
-        PlayerMovement();
-        AnimationControl();
-        Rolling();
+        char_state = base.isDead;
+        if (char_state == false)
+        {
+            PlayerMovement();
+            AnimationControl();
+            Rolling();
+        }
     }
 }

@@ -25,6 +25,24 @@ public class TestBoss : TestEntity
     [SerializeField]
     private Player player;
 
+    [SerializeField]
+    private GameObject _1;
+
+    [SerializeField]
+    private GameObject _2;
+
+    [SerializeField]
+    private GameObject _3;
+
+    [SerializeField]
+    private int HP_Under_01;
+
+    [SerializeField]
+    private int HP_Under_02;
+
+    [SerializeField]
+    private int HP_Under_03;
+
     private List<Bullet> GeneratedBullets;
 
     private CoroutineWrapper BarrageRoutine;
@@ -34,6 +52,8 @@ public class TestBoss : TestEntity
     private float LastPatternTime;
     private float LastMeleeAttackTime;
     private BasePatternConfig LastPattern;
+
+    public bool enter;
 
 
     public Notifier<int> Phase { get; private set; } = new Notifier<int>(0);
@@ -120,8 +140,6 @@ public class TestBoss : TestEntity
         }
     }
 
-
-
     public override void TakeDamage(HitInfo info)
     {
         base.TakeDamage(info);
@@ -151,8 +169,33 @@ public class TestBoss : TestEntity
 
         //release
         OnBossRemoved?.Invoke(this);
+    }  
+    private void SetActive()
+    {
+        if (HP.CurrentData <= HP_Under_01 && HP.CurrentData > HP_Under_02)
+        {
+            _1.SetActive(true);
+        }
+        else if(HP.CurrentData <= HP_Under_02 && HP.CurrentData > HP_Under_03)
+        {
+            _2.SetActive(true);
+        }
+        else if (HP.CurrentData <= HP_Under_03)
+        {
+            _3.SetActive(true);
+        }
     }
+    private void Start()
+    {
+        _1.SetActive(false);
+        _2.SetActive(false);
+        _3.SetActive(false);
 
+    }
+    private void Update()
+    {
+        SetActive();
+    }
 
 
 }

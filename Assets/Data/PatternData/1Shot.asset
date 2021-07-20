@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_origin: {fileID: 2269879196464680900, guid: b62e4b4f03d8aa6439ad076a1dfa326b, type: 3}
   bullet_damage: 10
-  bullet_speed: 4
-  pattern_interval: 0.4
+  bullet_speed: 8
+  pattern_interval: 0.1
   pattern_runtime: 0.4
-  pattern_delay: 1
+  pattern_delay: 0.1
   offset_direction: 1
   offset_speed: 1
   default_offset: -15

@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Char_HP: 0
-  speed: 8
+  speed: 16

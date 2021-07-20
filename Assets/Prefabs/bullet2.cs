@@ -6,7 +6,7 @@ using UnityEngine;
 public class bullet2 : MonoBehaviour
 {
     public float Char_HP;
-    public float speed = 4f; // 탄알 이동 속력
+    public float speed = 100f; // 탄알 이동 속력
     private Rigidbody bulletRigidbody; // 이동에 사용할 리지드 바디 컴포넌트
     // Start is called before the first frame update
     void Start()

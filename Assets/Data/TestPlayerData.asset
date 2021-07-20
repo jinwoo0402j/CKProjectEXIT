@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TestPlayerData
   m_EditorClassIdentifier: 
   Char_State: 1
-  attack_damage: 10
-  default_hp: 100
+  attack_damage: 1
+  default_hp: 200
   attack_delay: 0.1
   bullet_speed: 7
   walk_speed: 8

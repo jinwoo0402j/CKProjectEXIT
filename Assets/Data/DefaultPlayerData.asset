@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b010f46d9dbfba64499aa88aba3dcdd5, type: 3}
   m_Name: DefaultPlayerData
   m_EditorClassIdentifier: 
+  Char_State: 0
   attack_damage: 1
-  default_hp: 100
+  default_hp: 1
   attack_delay: 10
   bullet_speed: 7
   walk_speed: 6

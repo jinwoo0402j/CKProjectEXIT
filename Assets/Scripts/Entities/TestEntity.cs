@@ -76,6 +76,6 @@ public class TestEntity : MonoBehaviour
 
     protected virtual void Dead()
     {
-        Time.timeScale = 0;
+        
     }
 }

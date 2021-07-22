@@ -18,6 +18,8 @@ public class Drone : TestEntity
     [SerializeField]
     private float AttackDelay { get => data.ATTACK_DELAY; }
 
+    private bool P_State { get => base.isDead; }
+
     private float LastAttackTime;
 
     [SerializeField]
@@ -196,7 +198,7 @@ public class Drone : TestEntity
 
     private void PlayerInput()
     {
-        if (Enter_State == true)
+        if (Enter_State == true && P_State == false)
         {
             OnclickShot.CurrentData = true;
 

@@ -13,9 +13,6 @@ public class TestBoss : TestEntity
     public static event Action<TestEntity> OnBossRemoved;
 
     [SerializeField]
-    private AttackIndicator AttackIndicatorOrigin;
-
-    [SerializeField]
     private BossConfig data;
     public BossConfig Data { get => data; }
 
@@ -100,23 +97,6 @@ public class TestBoss : TestEntity
                 LastPatternTime = Time.time;
                 LastPattern = patterns.GetRandom();
                 BarrageRoutine.StartSingleton(LastPattern.Run(BarrageRoutine.Runner, this, player));
-            }
-
-            if (Time.time - LastMeleeAttackTime > data.MELEE_ATTACK_DELAY)
-            {
-                if ((player.transform.position - transform.position).magnitude < data.MELEE_ATTACK_THREADHOLD)
-                {
-                    LastMeleeAttackTime = Time.time;
-                    // impl melee attack
-                    MeleeAttackRoutine.StartSingleton(MeleeAttack());
-
-                    // indicator 
-                    var instance = PoolManager.SpawnObject(AttackIndicatorOrigin.gameObject);
-                    instance.transform.position = transform.position;
-
-                    var indicator = instance.GetComponent<AttackIndicator>();
-                    indicator.Initialize(data.MELEE_ATTACK_CHARGE_DELAY, data.MELEE_ATTACK_RANGE);
-                }
             }
 
             yield return null;

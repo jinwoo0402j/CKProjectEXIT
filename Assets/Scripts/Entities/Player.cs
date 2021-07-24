@@ -17,12 +17,6 @@ public class Player : TestEntity
     [SerializeField]
     private Rigidbody rb;
 
-    [SerializeField]
-    private GameObject Game_Over_T;
-
-    [SerializeField]
-    private GameObject Game_Over_I;
-
     public bool Roll_State;
 
     public Animator AniCon;
@@ -37,8 +31,6 @@ public class Player : TestEntity
 
     void Start()
     {
-        Game_Over_I.SetActive(false);
-        Game_Over_T.SetActive(false);
         Roll_State = false;
         RollSpeed = 1f;
         AniCon.SetBool("Idle", true);
@@ -118,8 +110,6 @@ public class Player : TestEntity
         if(base.isDead == true)
         {
             char_state = true;
-            Game_Over_I.SetActive(true);
-            Game_Over_T.SetActive(true);
         }
     }
 

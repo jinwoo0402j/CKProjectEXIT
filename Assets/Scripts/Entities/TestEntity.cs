@@ -40,6 +40,8 @@ public class TestEntity : MonoBehaviour
 
     public bool isDead = false;
 
+    public bool C_Roll;
+
     public TestEntity()
     {
         HP.OnDataChanged += HP_OnDataChanged;
@@ -55,22 +57,26 @@ public class TestEntity : MonoBehaviour
 
     public virtual void TakeDamage(HitInfo info)
     {
-        HP.CurrentData -= info.Amount;
-        OnHit?.Invoke(info);
-        
-        if (HP.CurrentData <= 0)
+        if (C_Roll == false)
         {
-            if (isDead)
-                return;
+            HP.CurrentData -= info.Amount;
+            OnHit?.Invoke(info);
 
-            isDead = true;
+            if (HP.CurrentData <= 0)
+            {
+                if (isDead)
+                    return;
 
-            Dead();
-            OnDead?.Invoke(this);
-        }
-        else
-        {
-            isDead = false;
+                isDead = true;
+
+                Dead();
+                OnDead?.Invoke(this);
+            }
+            else
+            {
+                isDead = false;
+            }
+
         }
     }
 

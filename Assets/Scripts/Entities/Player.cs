@@ -25,12 +25,20 @@ public class Player : TestEntity
 
     private bool char_state;
 
+    public float Roll_T;
+
+    public bool Roll_State_T;
+
+    public int CoolTime;
+
     public override float DefaultHP { get => data.DEFAULT_HP; }
 
     private float Speed { get => data.WALK_SPEED; }
 
     void Start()
     {
+        Roll_T = CoolTime;
+        Roll_State_T = true;
         Roll_State = false;
         RollSpeed = 1f;
         AniCon.SetBool("Idle", true);
@@ -57,7 +65,17 @@ public class Player : TestEntity
         else
         {
             RollSpeed = 1f;
-            Roll_State = false;
+            Roll_State = false;;
+        }
+    }
+
+    private void Roll_Count()
+    {
+        Roll_T = Roll_T + Time.deltaTime;
+       
+        if(Roll_T >= CoolTime)
+        {
+            Roll_State_T = true;
         }
     }
 
@@ -70,12 +88,14 @@ public class Player : TestEntity
 
     private void Rolling()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && Roll_State == false)
+        if(Input.GetKeyDown(KeyCode.Space) && Roll_State == false && Roll_State_T == true)
         {
             AniCon.SetBool("Idle", false);
             AniCon.SetBool("Walk", false);
             AniCon.SetBool("Roll", true);
             Roll_S.Play();
+            Roll_T = 0;
+            Roll_State_T = false;
         }
         else
         {
@@ -116,6 +136,8 @@ public class Player : TestEntity
 
     void Update()
     {
+        Roll_Count();
+        base.C_Roll = Roll_State;
         CharStat();
         if (char_state == false)
         {

@@ -4347,6 +4347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyType: 0
   isDead: 0
+  C_Roll: 0
   Game_Over_T: {fileID: 1461524722}
   Game_Over_I: {fileID: 544292150}
   Game_Over_B_R: {fileID: 6497613893076612330}
@@ -6300,6 +6301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyType: 2
   isDead: 0
+  C_Roll: 0
   data: {fileID: 11400000, guid: 18692fd6af69cd24c8cfd777c890f110, type: 2}
   patterns:
   - {fileID: 11400000, guid: 40b3dc8cb78bf0b4cb30bee57c259784, type: 2}
@@ -12098,6 +12100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyType: 1
   isDead: 0
+  C_Roll: 0
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   ActionDistance: 100
   Sub_Ani: {fileID: 1195112976158482580}
@@ -12785,12 +12788,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyType: 1
   isDead: 0
+  C_Roll: 0
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   Roll_S: {fileID: 6362141073561847776}
   rb: {fileID: 6362141073561847775}
   Roll_State: 0
   AniCon: {fileID: 6362141073561847773}
   RollSpeed: 1
+  Roll_T: 0
+  Roll_State_T: 0
+  CoolTime: 15
 --- !u!95 &6362141073561847773
 Animator:
   serializedVersion: 3

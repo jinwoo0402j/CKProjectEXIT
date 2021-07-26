@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using Utils;
 
@@ -30,6 +31,10 @@ public class Player : TestEntity
     public bool Roll_State_T;
 
     public int CoolTime;
+
+    public int CoolTime02;
+
+    public Text Cool_T;
 
     public override float DefaultHP { get => data.DEFAULT_HP; }
 
@@ -133,9 +138,22 @@ public class Player : TestEntity
         }
     }
 
+    private void CoolTime_Text()
+    {
+        if(CoolTime02 <= 0)
+        {
+            Cool_T.text = "";
+        }
+        else
+        {
+            Cool_T.text = CoolTime02.ToString();
+        }
+    }
 
     void Update()
     {
+        CoolTime_Text();
+        CoolTime02 = CoolTime - (int)Roll_T;
         Roll_Count();
         base.C_Roll = Roll_State;
         CharStat();

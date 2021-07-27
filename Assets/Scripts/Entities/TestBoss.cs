@@ -130,9 +130,9 @@ public class TestBoss : TestEntity
         }
     }
 
-    public override void TakeDamage(HitInfo info)
+    public override void TakeDamageBoss(HitInfo info)
     {
-        base.TakeDamage(info);
+        base.TakeDamageBoss(info);
         Debug.Log("hit : " + info.Amount);
 
         var rate = HP.CurrentData / data.DEFAULT_HP;

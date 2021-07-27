@@ -236,7 +236,7 @@ public class Drone : TestEntity
 
 
 
-                    target.TakeDamage(info);
+                    target.TakeDamageBoss(info);
                     ProbeMuzzleEffect.Play();
                     BulletWrapper.StartSingleton(BulletEffect(0.1f, info));
                     Laser.Play();

@@ -81,6 +81,27 @@ public class TestEntity : MonoBehaviour
 
         }
     }
+    public virtual void TakeDamageBoss(HitInfo info)
+    {
+        HP.CurrentData -= info.Amount;
+        OnHit?.Invoke(info);
+
+        if (HP.CurrentData <= 0)
+        {
+            if (isDead)
+                return;
+
+            isDead = true;
+
+            Dead();
+            OnDead?.Invoke(this);
+        }
+        else
+        {
+            isDead = false;
+        }
+    }
+
 
     protected virtual void Dead()
     {

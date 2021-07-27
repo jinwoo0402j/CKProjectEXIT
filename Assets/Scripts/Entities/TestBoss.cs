@@ -179,6 +179,7 @@ public class TestBoss : TestEntity
     {
         _1.SetActive(false);
         _2.SetActive(false);
+        _3.SetActive(false);
     }
     private void Update()
     {

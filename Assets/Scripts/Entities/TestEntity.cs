@@ -42,6 +42,8 @@ public class TestEntity : MonoBehaviour
 
     public bool C_Roll;
 
+    public float _shaketime;
+
     public TestEntity()
     {
         HP.OnDataChanged += HP_OnDataChanged;

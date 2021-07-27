@@ -28,7 +28,11 @@ public class bullet2 : MonoBehaviour
             Char_HP = Char_HP - 1f; 
             GameObject.Find("char").GetComponent<Player>().HP.CurrentData=Char_HP; 
             Destroy(gameObject);
-
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+        }
+        else
+        {
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0);
         }
     }
 

@@ -32,8 +32,12 @@ public class Bullet : MonoBehaviour
             info.hitPoint = transform.position;
 
             entity.TakeDamage(info);
-
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
             PoolManager.ReleaseObject(gameObject);
+        }
+        else
+        {
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0);
         }
     }
 

@@ -29,9 +29,6 @@ public class TestBoss : TestEntity
     private GameObject _2;
 
     [SerializeField]
-    private GameObject _3;
-
-    [SerializeField]
     private int HP_Under_01;
 
     [SerializeField]
@@ -51,6 +48,8 @@ public class TestBoss : TestEntity
     private BasePatternConfig LastPattern;
 
     public bool enter;
+
+    public bool _Dead;
 
 
     public Notifier<int> Phase { get; private set; } = new Notifier<int>(0);
@@ -73,6 +72,14 @@ public class TestBoss : TestEntity
     private void OnEnable()
     {
         StartCoroutine(MainRoutine());
+    }
+
+    private void _Dead_Boss()
+    {
+        if(HP.CurrentData <= 0)
+        {
+            _Dead = true;
+        }
     }
 
     private void RuntimeInitialize()
@@ -160,21 +167,16 @@ public class TestBoss : TestEntity
         {
             _2.SetActive(true);
         }
-        else if (HP.CurrentData <= HP_Under_03)
-        {
-            _3.SetActive(true);
-        }
     }
     private void Start()
     {
         _1.SetActive(false);
         _2.SetActive(false);
-        _3.SetActive(false);
-
     }
     private void Update()
     {
         SetActive();
+        _Dead_Boss();
     }
 
 

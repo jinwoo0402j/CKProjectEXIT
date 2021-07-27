@@ -18,7 +18,7 @@ public class Drone : TestEntity
     [SerializeField]
     private float AttackDelay { get => data.ATTACK_DELAY; }
 
-    private bool P_State { get => base.isDead; }
+    public bool P_State;
 
     private float LastAttackTime;
 
@@ -86,6 +86,8 @@ public class Drone : TestEntity
     private CoroutineWrapper markerRoutine;
 
     public bool Enter_State;
+
+    public bool Boss_D;
 
     private void Start()
     {
@@ -198,7 +200,9 @@ public class Drone : TestEntity
 
     private void PlayerInput()
     {
-        if (Enter_State == true && P_State == false)
+        P_State = Target.GetComponent<Player>().char_state;
+        Boss_D = GameObject.Find("BossDummyResource").GetComponent<TestBoss>()._Dead;
+        if (Enter_State == true && P_State == false && Boss_D == false)
         {
             OnclickShot.CurrentData = true;
 

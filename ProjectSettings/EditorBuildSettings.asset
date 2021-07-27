@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestPlayerMovement.unity
     guid: 56d38234a250c854c9afbb2224418493
+  - enabled: 1
+    path: Assets/Scenes/GameClear.unity
+    guid: 99e0c430ff4bb9e48921e28d6337837a
   m_configObjects: {}

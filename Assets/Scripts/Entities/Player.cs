@@ -24,7 +24,7 @@ public class Player : TestEntity
 
     public float RollSpeed;
 
-    private bool char_state;
+    public bool char_state;
 
     public float Roll_T;
 
@@ -35,6 +35,8 @@ public class Player : TestEntity
     public int CoolTime02;
 
     public Text Cool_T;
+
+    public bool Boss_D;
 
     public override float DefaultHP { get => data.DEFAULT_HP; }
 
@@ -152,12 +154,13 @@ public class Player : TestEntity
 
     void Update()
     {
+        Boss_D = GameObject.Find("BossDummyResource").GetComponent<TestBoss>()._Dead;
         CoolTime_Text();
         CoolTime02 = CoolTime - (int)Roll_T;
         Roll_Count();
         base.C_Roll = Roll_State;
         CharStat();
-        if (char_state == false)
+        if (char_state == false && Boss_D == false)
         {
             PlayerMovement();
             AnimationControl();

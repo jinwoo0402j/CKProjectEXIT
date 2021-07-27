@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Rigidbody rigid;
 
-
     private HitInfo info;
 
     private void Awake()
@@ -32,13 +31,15 @@ public class Bullet : MonoBehaviour
             info.hitPoint = transform.position;
 
             entity.TakeDamage(info);
-            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
             PoolManager.ReleaseObject(gameObject);
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+            GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
         }
         else
         {
             GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0);
         }
+
     }
 
     public void Initialize(in HitInfo info, in float speed)

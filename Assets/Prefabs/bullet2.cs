@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class bullet2 : MonoBehaviour
 {
+
     public float Char_HP;
     public float speed = 100f; // 탄알 이동 속력
     private Rigidbody bulletRigidbody; // 이동에 사용할 리지드 바디 컴포넌트
@@ -26,9 +27,10 @@ public class bullet2 : MonoBehaviour
         {
             Char_HP = GameObject.Find("char").GetComponent<Player>().HP.CurrentData;
             Char_HP = Char_HP - 1f; 
-            GameObject.Find("char").GetComponent<Player>().HP.CurrentData=Char_HP; 
-            Destroy(gameObject);
+            GameObject.Find("char").GetComponent<Player>().HP.CurrentData=Char_HP;
             GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+            GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
+            Destroy(gameObject);
         }
         else
         {

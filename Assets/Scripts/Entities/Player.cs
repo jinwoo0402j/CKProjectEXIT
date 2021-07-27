@@ -16,6 +16,9 @@ public class Player : TestEntity
     private AudioSource Roll_S;
 
     [SerializeField]
+    private AudioSource Hit_S;
+
+    [SerializeField]
     private Rigidbody rb;
 
     public bool Roll_State;
@@ -167,4 +170,18 @@ public class Player : TestEntity
             Rolling();
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Hit_S.Play();
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+        }
+        else
+        {
+            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0);
+        }
+    }
+
 }

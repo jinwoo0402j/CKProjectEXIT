@@ -13061,7 +13061,7 @@ MonoBehaviour:
   rb: {fileID: 6362141073561847775}
   Roll_State: 0
   AniCon: {fileID: 6362141073561847773}
-  RollSpeed: 1
+  Roll_Sp: 1
   char_state: 0
   Roll_T: 0
   Roll_State_T: 0

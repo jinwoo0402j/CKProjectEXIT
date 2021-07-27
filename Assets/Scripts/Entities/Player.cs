@@ -25,7 +25,9 @@ public class Player : TestEntity
 
     public Animator AniCon;
 
-    public float RollSpeed;
+    public float Roll_Sp;
+
+    private float RollSpeed;
 
     public bool char_state;
 
@@ -69,7 +71,7 @@ public class Player : TestEntity
 
         if (Rollbool.IsName("Rolling") && Rollbool.normalizedTime >= 0.1f && Rollbool.IsName("Rolling") && Rollbool.normalizedTime <= 0.5f)
         {
-            RollSpeed = 3f;
+            RollSpeed = Roll_Sp;
             Roll_State = true;
         }
         else

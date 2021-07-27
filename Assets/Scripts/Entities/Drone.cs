@@ -185,7 +185,7 @@ public class Drone : TestEntity
 
     private void Anicon()
     {
-        if(Input.GetMouseButton(0))
+        if(Enter_State == true && P_State == false && Boss_D == false)
         {
             Sub_Ani.SetBool("Shoot", true);
             Sub_Ani.SetBool("Idle", false);

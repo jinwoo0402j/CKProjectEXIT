@@ -43,6 +43,10 @@ public class Player : TestEntity
 
     public bool Boss_D;
 
+    private float god;
+
+    public float GodMode;
+
     public override float DefaultHP { get => data.DEFAULT_HP; }
 
     private float Speed { get => data.WALK_SPEED; }
@@ -108,6 +112,7 @@ public class Player : TestEntity
             Roll_S.Play();
             Roll_T = 0;
             Roll_State_T = false;
+            god = GodMode;
         }
         else
         {
@@ -159,11 +164,13 @@ public class Player : TestEntity
 
     void Update()
     {
+        god = god - Time.deltaTime;
         Boss_D = GameObject.Find("BossDummyResource").GetComponent<TestBoss>()._Dead;
         CoolTime_Text();
         CoolTime02 = CoolTime - (int)Roll_T;
         Roll_Count();
         base.C_Roll = Roll_State;
+        base._god_T = god;
         CharStat();
         if (char_state == false && Boss_D == false)
         {

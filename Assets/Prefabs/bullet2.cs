@@ -25,11 +25,14 @@ public class bullet2 : MonoBehaviour
         //충돌한 상대방 게임 오브젝트가 player 태그를 가진 경우
         if(other.tag == "Player")
         {
-            Char_HP = GameObject.Find("char").GetComponent<Player>().HP.CurrentData;
-            Char_HP = Char_HP - 1f; 
-            GameObject.Find("char").GetComponent<Player>().HP.CurrentData=Char_HP;
-            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
-            GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
+            if (GameObject.Find("char").GetComponent<Player>()._god_T < 0)
+            {
+                Char_HP = GameObject.Find("char").GetComponent<Player>().HP.CurrentData;
+                Char_HP = Char_HP - 1f;
+                GameObject.Find("char").GetComponent<Player>().HP.CurrentData = Char_HP;
+                GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+                GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
+            }
             Destroy(gameObject);
         }
         else

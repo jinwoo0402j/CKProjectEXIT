@@ -29,6 +29,9 @@ public class TestBoss : TestEntity
     private GameObject _2;
 
     [SerializeField]
+    private GameObject _3;
+
+    [SerializeField]
     private int HP_Under_01;
 
     [SerializeField]
@@ -166,6 +169,10 @@ public class TestBoss : TestEntity
         else if(HP.CurrentData <= HP_Under_02 && HP.CurrentData > HP_Under_03)
         {
             _2.SetActive(true);
+        }
+        else if (HP.CurrentData <= HP_Under_03)
+        {
+            _3.SetActive(true);
         }
     }
     private void Start()

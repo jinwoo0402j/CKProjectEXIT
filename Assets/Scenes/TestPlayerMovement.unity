@@ -599,7 +599,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4fb452242c8fe0e42ad187727bd6de83, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a099d660be8e9af47828f8df9238691e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -4604,7 +4604,7 @@ MonoBehaviour:
   MyType: 0
   isDead: 0
   C_Roll: 0
-  _shaketime: 0
+  _god_T: 0
   Game_Over_T: {fileID: 1461524722}
   Game_Over_I: {fileID: 544292150}
   Game_Over_B_E: {fileID: 3022784978330297326}
@@ -6563,7 +6563,7 @@ MonoBehaviour:
   MyType: 2
   isDead: 0
   C_Roll: 0
-  _shaketime: 0
+  _god_T: 0
   data: {fileID: 11400000, guid: 18692fd6af69cd24c8cfd777c890f110, type: 2}
   patterns:
   - {fileID: 11400000, guid: 40b3dc8cb78bf0b4cb30bee57c259784, type: 2}
@@ -6576,6 +6576,7 @@ MonoBehaviour:
   player: {fileID: 6362141073561847772}
   _1: {fileID: 863763173}
   _2: {fileID: 757425965}
+  _3: {fileID: 0}
   HP_Under_01: 900
   HP_Under_02: 500
   HP_Under_03: 400
@@ -12363,7 +12364,7 @@ MonoBehaviour:
   MyType: 1
   isDead: 0
   C_Roll: 0
-  _shaketime: 0
+  _god_T: 0
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   P_State: 0
   ActionDistance: 100
@@ -13054,7 +13055,7 @@ MonoBehaviour:
   MyType: 1
   isDead: 0
   C_Roll: 0
-  _shaketime: 0
+  _god_T: 3
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   Roll_S: {fileID: 6362141073561847776}
   Hit_S: {fileID: 0}
@@ -13069,6 +13070,7 @@ MonoBehaviour:
   CoolTime02: 0
   Cool_T: {fileID: 57103121}
   Boss_D: 0
+  GodMode: 3
 --- !u!95 &6362141073561847773
 Animator:
   serializedVersion: 3

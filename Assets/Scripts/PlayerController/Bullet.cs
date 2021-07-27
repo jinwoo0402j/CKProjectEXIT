@@ -32,8 +32,11 @@ public class Bullet : MonoBehaviour
 
             entity.TakeDamage(info);
             PoolManager.ReleaseObject(gameObject);
-            GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
-            GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
+            if(GameObject.Find("char").GetComponent<Player>()._god_T < 0)
+            {
+                GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>().VibrateForTime(0.1f);
+                GameObject.FindWithTag("Hit").GetComponent<AudioSource>().Play();
+            }
         }
         else
         {

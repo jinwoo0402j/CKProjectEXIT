@@ -42,7 +42,7 @@ public class TestEntity : MonoBehaviour
 
     public bool C_Roll;
 
-    public float _shaketime;
+    public float _god_T;
 
     public TestEntity()
     {
@@ -59,7 +59,7 @@ public class TestEntity : MonoBehaviour
 
     public virtual void TakeDamage(HitInfo info)
     {
-        if (C_Roll == false)
+        if (_god_T < 0)
         {
             HP.CurrentData -= info.Amount;
             OnHit?.Invoke(info);

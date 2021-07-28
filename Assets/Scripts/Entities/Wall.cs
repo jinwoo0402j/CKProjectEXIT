@@ -27,7 +27,7 @@ public class Wall : MonoBehaviour
     void Wall_hp()
     {
         Boss_hp = Boss.GetComponent<TestBoss>().HP.CurrentData;
-        Dissolve_C = Boss_hp / 1000 - 0.7f;
+        Dissolve_C = Boss_hp / 1000 - 0.6f;
         this.GetComponent<Renderer>().material.SetFloat("Vector1_64f45ecfc44240519da5a9970de70f2b", Dissolve_C);
     }
 }

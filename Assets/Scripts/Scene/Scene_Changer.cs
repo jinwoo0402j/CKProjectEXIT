@@ -21,11 +21,6 @@ public class Scene_Changer : MonoBehaviour
     {
         SceneManager.LoadScene("GameStart");
     }
-    public void Scene_ReStart()
-    {
-        SceneManager.LoadScene("Lobby");
-    }
-
 
     public void Exit_Botton()
     {

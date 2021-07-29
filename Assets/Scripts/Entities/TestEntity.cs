@@ -44,6 +44,7 @@ public class TestEntity : MonoBehaviour
 
     public float _god_T;
 
+    public bool _Boss_Dead;
     public TestEntity()
     {
         HP.OnDataChanged += HP_OnDataChanged;
@@ -59,7 +60,8 @@ public class TestEntity : MonoBehaviour
 
     public virtual void TakeDamage(HitInfo info)
     {
-        if (_god_T < 0)
+        _Boss_Dead = GameObject.Find("BossDummyResource").GetComponent<TestBoss>()._Dead;
+        if (_god_T < 0 && _Boss_Dead == false)
         {
             HP.CurrentData -= info.Amount;
             OnHit?.Invoke(info);

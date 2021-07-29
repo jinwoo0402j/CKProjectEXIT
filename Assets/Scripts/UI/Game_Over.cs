@@ -72,7 +72,7 @@ public class Game_Over : TestEntity
             spawnner01.SetActive(false);
             spawnner02.SetActive(false);
             spawnner03.SetActive(false);
-            if (_time >= 3)
+            if (_time >= 2.5)
             {
                 SceneManager.LoadScene("GameClear");
             }

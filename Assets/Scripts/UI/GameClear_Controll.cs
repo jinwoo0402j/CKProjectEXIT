@@ -7,6 +7,8 @@ public class GameClear_Controll : MonoBehaviour
 {
     public int Cut_Count;
 
+    public int Cut_C_Save;
+
     public GameObject _1;
 
     public GameObject _2;
@@ -35,6 +37,8 @@ public class GameClear_Controll : MonoBehaviour
 
     public AudioSource _S02;
 
+    public AudioSource _S03;
+
     private float Cut_T;
 
     // Start is called before the first frame update
@@ -49,32 +53,40 @@ public class GameClear_Controll : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Cut_Count++;
+            Cut_C_Save = Cut_Count;
             Cut_T = 1.5f;
         }
 
-        switch (Cut_Count)
+        switch (Cut_C_Save)
         {
             case 1:
                 _S01.Play();
                 _1.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 2:
                 _S01.Stop();
                 _2.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 3:
+                _S03.Play();
                 _2_1.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 4:
                 _S02.Play();
+                _S03.Stop();
                 _2.SetActive(false);
                 _3.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 5:
                 _S02.Stop();
                 Ani_01.SetBool("Disa", true);
                 Ani_02_1.SetBool("Disa", true);
                 Ani_03.SetBool("Disa", true);
+                Cut_C_Save = 0;
                 break;
             case 6:
                 _1.SetActive(false);
@@ -82,10 +94,12 @@ public class GameClear_Controll : MonoBehaviour
                 _3.SetActive(false);
                 _T01.SetActive(true);
                 _T02.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 7:
                 _T03.SetActive(true);
                 _T04.SetActive(true);
+                Cut_C_Save = 0;
                 break;
         }
     }

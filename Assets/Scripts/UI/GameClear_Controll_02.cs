@@ -8,6 +8,10 @@ public class GameClear_Controll_02 : MonoBehaviour
 {
     public int Cut_Count;
 
+    private float Cut_T;
+
+    private int Cut_C_Save;
+
     [SerializeField]
     private GameObject _1;
 
@@ -47,8 +51,6 @@ public class GameClear_Controll_02 : MonoBehaviour
     [SerializeField]
     private Animator Ani_03;
 
-    private float Cut_T;
-
     [SerializeField]
     private AudioSource _S01;
 
@@ -73,6 +75,9 @@ public class GameClear_Controll_02 : MonoBehaviour
     [SerializeField]
     private AudioSource _S08;
 
+    [SerializeField]
+    private AudioSource _S09;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +90,7 @@ public class GameClear_Controll_02 : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Cut_Count++;
+            Cut_C_Save = Cut_Count;
             Cut_T = 1.5f;
         }
 
@@ -93,41 +99,67 @@ public class GameClear_Controll_02 : MonoBehaviour
             SceneManager.LoadScene("TestPlayerMovement");
         }
 
-        switch (Cut_Count)
+        switch (Cut_C_Save)
         {
             case 1:
                 _S01.Play();
                 _1.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 2:
+                _S01.Stop();
+                _S02.Play();
                 _2.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 3:
+                _S09.Play();
+                _S02.Stop();
                 _2_1.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 4:
+                _S09.Stop();
+                _S03.Play();
                 _1.SetActive(false);
                 _3.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 5:
+                _S03.Stop();
                 Ani_02.SetBool("Disa", true);
                 Ani_02_1.SetBool("Disa", true);
                 Ani_03.SetBool("Disa", true);
+                Cut_C_Save = 0;
                 break;
             case 6:
+                _S04.Play();
                 _4.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 7:
+                _S05.Play();
+                _S04.Stop();
                 _5.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 8:
+                _S06.Play();
+                _S05.Stop();
                 _6.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 9:
+                _S07.Play();
+                _S06.Stop();
                 _7.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 10:
+                _S08.Play();
+                _S07.Stop();
                 _8.SetActive(true);
+                Cut_C_Save = 0;
                 break;
             case 11:
                 SceneManager.LoadScene("TestPlayerMovement");

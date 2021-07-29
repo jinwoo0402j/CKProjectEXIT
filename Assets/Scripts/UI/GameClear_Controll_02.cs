@@ -49,6 +49,30 @@ public class GameClear_Controll_02 : MonoBehaviour
 
     private float Cut_T;
 
+    [SerializeField]
+    private AudioSource _S01;
+
+    [SerializeField]
+    private AudioSource _S02;
+
+    [SerializeField]
+    private AudioSource _S03;
+
+    [SerializeField]
+    private AudioSource _S04;
+
+    [SerializeField]
+    private AudioSource _S05;
+
+    [SerializeField]
+    private AudioSource _S06;
+
+    [SerializeField]
+    private AudioSource _S07;
+
+    [SerializeField]
+    private AudioSource _S08;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +96,7 @@ public class GameClear_Controll_02 : MonoBehaviour
         switch (Cut_Count)
         {
             case 1:
+                _S01.Play();
                 _1.SetActive(true);
                 break;
             case 2:

@@ -19,7 +19,7 @@ public class Scene_Changer : MonoBehaviour
 
     public void Scene_Change()
     {
-        SceneManager.LoadScene("TestPlayerMovement");
+        SceneManager.LoadScene("GameStart");
     }
     public void Scene_ReStart()
     {

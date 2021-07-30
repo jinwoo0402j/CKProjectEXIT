@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32c729556e6bf7428dd85413ba70850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Amount: 1000
+  _Amount: 10
 --- !u!1 &189344646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0dd915e3e6723844c844e3f85dfb53ec, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4817,6 +4817,7 @@ MonoBehaviour:
   isDead: 0
   C_Roll: 0
   _god_T: 0
+  _Boss_Dead: 0
   Game_Over_T: {fileID: 1461524722}
   Game_Over_I: {fileID: 544292150}
   Game_Over_B_E: {fileID: 3022784978330297326}
@@ -7197,6 +7198,7 @@ MonoBehaviour:
   isDead: 0
   C_Roll: 0
   _god_T: 0
+  _Boss_Dead: 0
   data: {fileID: 11400000, guid: 18692fd6af69cd24c8cfd777c890f110, type: 2}
   patterns:
   - {fileID: 11400000, guid: 40b3dc8cb78bf0b4cb30bee57c259784, type: 2}
@@ -12998,6 +13000,7 @@ MonoBehaviour:
   isDead: 0
   C_Roll: 0
   _god_T: 0
+  _Boss_Dead: 0
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   P_State: 0
   ActionDistance: 100
@@ -13689,6 +13692,7 @@ MonoBehaviour:
   isDead: 0
   C_Roll: 0
   _god_T: 3
+  _Boss_Dead: 0
   data: {fileID: 11400000, guid: 79991af3e2ccb0b4ab08aa67ee76adc7, type: 2}
   Roll_S: {fileID: 6362141073561847776}
   Hit_S: {fileID: 0}

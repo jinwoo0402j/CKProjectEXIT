@@ -39,6 +39,8 @@ public class GameClear_Controll : MonoBehaviour
 
     public AudioSource _S03;
 
+    public AudioSource _BG;
+
     private float Cut_T;
 
     // Start is called before the first frame update
@@ -55,6 +57,11 @@ public class GameClear_Controll : MonoBehaviour
             Cut_Count++;
             Cut_C_Save = Cut_Count;
             Cut_T = 1.5f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
 
         switch (Cut_C_Save)
@@ -89,6 +96,7 @@ public class GameClear_Controll : MonoBehaviour
                 Cut_C_Save = 0;
                 break;
             case 6:
+                _BG.Play();
                 _1.SetActive(false);
                 _2_1.SetActive(false);
                 _3.SetActive(false);

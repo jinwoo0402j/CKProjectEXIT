@@ -99,6 +99,11 @@ public class GameClear_Controll_02 : MonoBehaviour
             SceneManager.LoadScene("TestPlayerMovement");
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         switch (Cut_C_Save)
         {
             case 1:
